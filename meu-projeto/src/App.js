@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import HelloWord from './components/HelloWorld';
 
 function App() {
 
@@ -17,8 +18,10 @@ function App() {
       <h1>REACT</h1>
       <p>Você está acessando {name}</p>
       <p>Nome maiúsculo {newName} </p>
-      <p>Valor soma:{soma(2, 3)}</p>
+      <p>Valor da soma:{soma(2, 3)}</p>
       <img src={url} alt="Minha imagem"/>
+
+      <HelloWord/>
     </div>
   );
 }
