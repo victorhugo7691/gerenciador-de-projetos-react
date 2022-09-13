@@ -1,4 +1,4 @@
-import Item from "./Item.";
+import Item from "./Item";
 
 function List(){
     //Fragment <> </>
@@ -8,6 +8,7 @@ function List(){
             <ul>
                 <Item marca="Chevrolet" ano_lancamento={2010}/>
                 <Item marca="Fiat" ano_lancamento={2020}/>
+                <Item/>
             </ul>
         </>
     )

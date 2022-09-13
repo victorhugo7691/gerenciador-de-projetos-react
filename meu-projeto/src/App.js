@@ -4,6 +4,9 @@ import HelloWord from './components/HelloWorld';
 import SayMyName from './components/SayMyName';
 import Pessoa from './components/Pessoa';
 import List from './components/List';
+import Eventos from './components/Eventos';
+import Form from './components/Form';
+import Condicional from './components/Condicional';
 
 function App() {
 
@@ -37,6 +40,15 @@ function App() {
       <Pessoa nome= {pessoa.nome} idade= {pessoa.idade} profissao= {pessoa.profissao} foto="https://via.placeholder.com/150"/>
     
       <List/>
+
+      <h1>Eventos</h1>
+      <Eventos numero={1}/>
+
+      <Form/>
+
+      <h1>Rederização por condição</h1>
+      <Condicional />
+      
     </div>
   );
 }
