@@ -7,11 +7,19 @@ import List from './components/List';
 import Eventos from './components/Eventos';
 import Form from './components/Form';
 import Condicional from './components/Condicional';
+import OutraLista from './components/OutraLista';
+import { useState} from 'react'
+import SeuNome from './components/SeuNome';
+import Saudacao from './components/Saudacao';
+
 
 function App() {
 
   const name = "Super Veloz";
   const newName = name.toUpperCase();
+  const [seuNome, setNome] = useState();
+
+  const meusItens = ['React', 'Vue', 'Angular'];
 
   const pessoa = {
     nome: "Rodrigo",
@@ -49,6 +57,14 @@ function App() {
       <h1>Rederização por condição</h1>
       <Condicional />
       
+      <h1>Rederização de listas</h1>
+      <OutraLista itens={meusItens}/>
+
+      <h1>State Lift</h1>
+      <SeuNome setNome={setNome}/>
+      {seuNome}
+      <Saudacao nome = {seuNome}/>
+
     </div>
   );
 }
