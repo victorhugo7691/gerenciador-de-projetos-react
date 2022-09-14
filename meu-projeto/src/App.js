@@ -13,59 +13,28 @@ import SeuNome from './components/SeuNome';
 import Saudacao from './components/Saudacao';
 
 
+import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom'
+import Home from './pages/Home';
+import Empresa from './pages/Empresa';
+import Contato from './pages/Contato';
+
 function App() {
 
-  const name = "Super Veloz";
-  const newName = name.toUpperCase();
-  const [seuNome, setNome] = useState();
-
-  const meusItens = ['React', 'Vue', 'Angular'];
-
-  const pessoa = {
-    nome: "Rodrigo",
-    idade: 19,
-    profissao: "DevOps"
-  }
-
-  function soma(a, b){
-    return a+b;
-  }
-
-  const url = 'https://via.placeholder.com/150'
-
   return (
-    <div className="App">
-      <h1>REACT</h1>
-      <HelloWord/>
-      <p>Você está acessando {name}</p>
-      <p>Nome maiúsculo {newName} </p>
-      <p>Valor da soma:{soma(2, 3)}</p>
-      <img src={url} alt="Minha imagem"/>
-      <SayMyName nome="Victor"/>
-      <SayMyName nome="Pedro"/>
-      <SayMyName nome = {name}/>
+    <Router>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/contato">Contato</Link></li>
+        <li><Link to="/empresa">Empresa</Link></li>
+      </ul>
 
-      <Pessoa nome= {pessoa.nome} idade= {pessoa.idade} profissao= {pessoa.profissao} foto="https://via.placeholder.com/150"/>
-    
-      <List/>
+      <Routes>
+        <Route exact path="/" element={<Home/>}></Route>
+        <Route path="/contato" element={<Contato/>}></Route>
+        <Route path="/empresa" element={<Empresa/>}></Route>
+      </Routes>
 
-      <h1>Eventos</h1>
-      <Eventos numero={1}/>
-
-      <Form/>
-
-      <h1>Rederização por condição</h1>
-      <Condicional />
-      
-      <h1>Rederização de listas</h1>
-      <OutraLista itens={meusItens}/>
-
-      <h1>State Lift</h1>
-      <SeuNome setNome={setNome}/>
-      {seuNome}
-      <Saudacao nome = {seuNome}/>
-
-    </div>
+    </Router>
   );
 }
 
