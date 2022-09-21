@@ -4,9 +4,10 @@ import Input from '../form/Input';
 import Select from '../form/Select';
 import SubmitButton from '../form/SubmitButton';
 
-function ProjectForm({btnText}){
+function ProjectForm({handleSubmit, projectData, btnText}){
 
     const [categories, setCategories] = useState([]);
+    const [project, setProject] = useState(projectData || {});
 
     //useEffect renderiza uma vez o hook
     useEffect(() => {
@@ -24,22 +25,45 @@ function ProjectForm({btnText}){
     }, [])
     
 
+    const submit = (e) => {
+        e.preventDefault();
+        handleSubmit(project);
+    }
+
+    function handleChange(e){
+        setProject({...project, [e.target.name]: e.target.value})
+    }
+
+    function handleCategory(e){
+        setProject({...project, category: {
+            id: e.target.value,
+            name: e.target.options[e.target.selectedIndex].text,
+        }})
+    }
+//? project.category.name : ''
+
     return (
-        <form className={styles.form}>
+        <form onSubmit={submit} className={styles.form}>
             <div>
                 <Input 
-                type="text" 
-                text="Nome do projeto"
-                placeholder="Insira o nome do projeto" 
-                name="name"/>
+                    type="text" 
+                    text="Nome do projeto"
+                    placeholder="Insira o nome do projeto" 
+                    name="name"
+                    handleOnChange={handleChange}
+                    value={project.name}
+                />
             </div>
 
             <div>
-            <Input 
-                type="number" 
-                text="Orçamento do projeto"
-                placeholder="Insira o orçamento total" 
-                name="budget"/>
+                <Input 
+                    type="number" 
+                    text="Orçamento do projeto"
+                    placeholder="Insira o orçamento total" 
+                    name="budget"
+                    handleOnChange={handleChange}
+                    value={project.budget}
+                />
             </div>
 
             <div>
@@ -47,6 +71,8 @@ function ProjectForm({btnText}){
                     name="category_id"
                     text="Selecione uma categoria"
                     options={categories}
+                    handleOnChange={handleCategory}
+                    value={project.category ? project.category.id : ''}
                 />
             </div>
             
